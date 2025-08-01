@@ -1,4 +1,5 @@
 let amigos = [];
+let listaExistente = document.getElementById('listaAmigos');
 
 function agregarAmigo(){
 //Capturar el valor del campo de entrada: para obtener el texto ingresado por el usuario.
@@ -16,6 +17,7 @@ function agregarAmigo(){
 //Limpiar el campo de entrada: Después de añadir el nombre, restablecer el campo de texto a una cadena vacía.
                 limpiarCaja();            
                 lista();
+                //sortearAmigo();
             }
         }
 }
@@ -25,11 +27,24 @@ function limpiarCaja(){
 }
 
 function lista(){
-    let listaExistente = document.getElementById('listaAmigos');
     let nuevoElemento = document.createElement('li');
 
     for (let i = 0; i < amigos.length; i++) {
         nuevoElemento.textContent = amigos[i];
         listaExistente.appendChild(nuevoElemento);
+    }
+}
+
+function sortearAmigo(){
+    let mostrarResultado = document.getElementById("resultado")
+    let amigoSecreto = Math.floor(Math.random()*amigos.length);
+    
+    if(amigos.length === 0){
+        alert("Por favor, inserte un nombre");
+    }else{
+        //No mostrar la listaAmigos en el HTML
+        listaExistente.style.display = "none";
+        //Mostrar el amigo secreto
+        mostrarResultado.innerHTML = `El amigo secreto sorteado es: ${amigos[amigoSecreto]}`;
     }
 }
