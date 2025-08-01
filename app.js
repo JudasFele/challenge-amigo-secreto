@@ -7,14 +7,29 @@ function agregarAmigo(){
     if (nombreAmigo == ""){
             alert("Por favor, inserte un nombre");
         } else {
+            if(amigos.includes(nombreAmigo)){
+                limpiarCaja();
+                alert("No se permiten nombres repetidos");
+            } else{
 //Actualizar el array de amigos: Si el valor es válido, añadirlo al arreglo que almacena los nombre de amigos usando el método.push().
-            amigos.push(nombreAmigo);
+                amigos.push(nombreAmigo);
 //Limpiar el campo de entrada: Después de añadir el nombre, restablecer el campo de texto a una cadena vacía.
-            limpiarCaja();
-            console.log(amigos);
+                limpiarCaja();            
+                lista();
+            }
         }
 }
 
 function limpiarCaja(){
     document.getElementById("amigo").value = "";
+}
+
+function lista(){
+    let listaExistente = document.getElementById('listaAmigos');
+    let nuevoElemento = document.createElement('li');
+
+    for (let i = 0; i < amigos.length; i++) {
+        nuevoElemento.textContent = amigos[i];
+        listaExistente.appendChild(nuevoElemento);
+    }
 }
